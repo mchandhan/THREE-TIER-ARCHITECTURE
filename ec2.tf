@@ -6,9 +6,11 @@ resource "aws_instance" "web" {
 
   user_data = <<EOF
 #!/bin/bash
-yum install -y httpd
-echo "<h1>Web Tier</h1>" > /var/www/html/index.html
-systemctl start httpd
+sudo yum install -y httpd
+sudo rm /var/www/html/index.html
+sudo echo "<h1>Web Tier</h1>" > /var/www/html/index.html
+sudo chmod 644 /var/www/html/index.html
+sudo systemctl start httpd
 EOF
 }
 
